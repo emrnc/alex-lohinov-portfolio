@@ -10,6 +10,7 @@ const bio = [
 ];
 
 const actions = [
+  { label: "GitHub", href: "https://github.com/emrnc" },
   { label: "LinkedIn", href: "https://www.linkedin.com/in/emrnc/" },
   { label: "Twitter", href: "https://x.com/alexlohinov" },
 ];
