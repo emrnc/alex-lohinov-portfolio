@@ -17,7 +17,7 @@ export function ProjectLightbox({ title, image, darkImage }: ProjectLightboxProp
   const [isDarkTheme, setIsDarkTheme] = useState(false);
   const titleId = useId();
   const activeImage = isDarkTheme && darkImage ? darkImage : image;
-  const activeImageSize = isDarkTheme && darkImage ? { width: 1440, height: 900 } : { width: 900, height: 563 };
+  const activeImageSize = { width: 1440, height: 900 };
 
   useEffect(() => {
     setIsMounted(true);
