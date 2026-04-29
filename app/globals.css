@@ -327,7 +327,7 @@ body[data-theme="dark"] .action-link-secondary:hover {
 }
 
 .copy-email-button {
-  width: 112px;
+  width: 124px;
   flex: 0 0 auto;
 }
 
@@ -342,6 +342,7 @@ body[data-theme="dark"] .action-link-secondary:hover {
   align-items: center;
   gap: 6px;
   grid-area: 1 / 1;
+  white-space: nowrap;
   transition:
     opacity 180ms var(--ease-out-strong),
     transform 180ms var(--ease-out-strong);
