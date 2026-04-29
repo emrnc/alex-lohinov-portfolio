@@ -36,7 +36,7 @@ export function CopyEmailButton({ email }: CopyEmailButtonProps) {
       type="button"
       className={`action-link action-link-primary copy-email-button ${copied ? "is-copied" : ""}`}
       onClick={handleCopy}
-      aria-label={copied ? "Email copied" : "Copy email"}
+      aria-label={copied ? "Copied" : "Copy Email"}
       aria-live="polite"
     >
       <span className="copy-email-button__inner">
