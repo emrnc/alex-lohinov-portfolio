@@ -40,12 +40,12 @@ export function CopyEmailButton({ email }: CopyEmailButtonProps) {
     >
       <span className="copy-email-button__inner">
         {copied ? (
-          <span className="copy-email-button__state">
+          <span className="copy-email-button__state copy-email-button__state-success">
             <Check aria-hidden="true" />
             <span>Copied</span>
           </span>
         ) : (
-          <span className="copy-email-button__state">
+          <span className="copy-email-button__state copy-email-button__state-default">
             <Copy aria-hidden="true" />
             <span>Copy Email</span>
           </span>

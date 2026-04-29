@@ -327,7 +327,8 @@ body[data-theme="dark"] .action-link-secondary:hover {
 }
 
 .copy-email-button {
-  min-width: 95px;
+  width: 112px;
+  flex: 0 0 auto;
 }
 
 .copy-email-button__inner {
