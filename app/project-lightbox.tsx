@@ -13,6 +13,7 @@ type ProjectLightboxProps = {
 
 export function ProjectLightbox({ title, image, darkImage }: ProjectLightboxProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isImageVisible, setIsImageVisible] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const [isDarkTheme, setIsDarkTheme] = useState(false);
   const titleId = useId();
@@ -39,7 +40,10 @@ export function ProjectLightbox({ title, image, darkImage }: ProjectLightboxProp
   }, []);
 
   useEffect(() => {
-    if (!isOpen) return;
+    if (!isOpen) {
+      setIsImageVisible(false);
+      return;
+    }
 
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
@@ -47,11 +51,16 @@ export function ProjectLightbox({ title, image, darkImage }: ProjectLightboxProp
       }
     };
 
+    const imageFrame = window.requestAnimationFrame(() => {
+      setIsImageVisible(true);
+    });
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     window.addEventListener("keydown", onKeyDown);
 
     return () => {
+      window.cancelAnimationFrame(imageFrame);
+      setIsImageVisible(false);
       document.body.style.overflow = previousOverflow;
       window.removeEventListener("keydown", onKeyDown);
     };
@@ -71,6 +80,7 @@ export function ProjectLightbox({ title, image, darkImage }: ProjectLightboxProp
           width={activeImageSize.width}
           height={activeImageSize.height}
           className="project-image"
+          sizes="(max-width: 680px) 335px, 900px"
         />
         <span className="project-frame-action" aria-hidden="true">
           <Maximize2 />
@@ -99,14 +109,18 @@ export function ProjectLightbox({ title, image, darkImage }: ProjectLightboxProp
               </button>
             </div>
             <div className="lightbox-image-wrap">
-              <Image
-                src={activeImage}
-                alt={`${title} interface preview`}
-                width={activeImageSize.width}
-                height={activeImageSize.height}
-                className="lightbox-image"
-                priority
-              />
+              {isImageVisible ? (
+                <Image
+                  src={activeImage}
+                  alt={`${title} interface preview`}
+                  width={activeImageSize.width}
+                  height={activeImageSize.height}
+                  className="lightbox-image"
+                  sizes="(max-width: 1148px) calc(100vw - 48px), 1100px"
+                />
+              ) : (
+                <div className="lightbox-image lightbox-image-placeholder" aria-hidden="true" />
+              )}
             </div>
           </div>
         </div>,

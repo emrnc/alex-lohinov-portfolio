@@ -431,11 +431,11 @@ body[data-theme="dark"] .action-link-secondary:hover {
 
 .project-frame:hover {
   border-color: color-mix(in srgb, var(--text-secondary) 24%, var(--switcher-border));
-  box-shadow: 0 14px 36px rgba(23, 23, 23, 0.08);
+  box-shadow: 0 8px 22px rgba(23, 23, 23, 0.045);
 }
 
 body[data-theme="dark"] .project-frame:hover {
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.16);
 }
 
 .project-frame:active {
@@ -562,11 +562,16 @@ body[data-theme="dark"] .project-frame:hover {
 .lightbox-image {
   width: 100%;
   height: auto;
+  aspect-ratio: 16 / 10;
   max-height: calc(100vh - 96px);
   object-fit: contain;
   border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.12);
   background: #111;
+}
+
+.lightbox-image-placeholder {
+  display: block;
 }
 
 @keyframes lightbox-fade {
