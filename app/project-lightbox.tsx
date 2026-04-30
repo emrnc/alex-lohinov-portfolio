@@ -2,8 +2,15 @@
 
 import Image from "next/image";
 import { Maximize2, X } from "lucide-react";
-import { useEffect, useId, useState } from "react";
+import { useCallback, useEffect, useId, useState } from "react";
 import { createPortal } from "react-dom";
+import {
+  getStoredTheme,
+  resolveTheme,
+  subscribeToSystemThemeChange,
+  subscribeToThemeChange,
+  type ResolvedTheme,
+} from "./theme";
 
 type ProjectLightboxProps = {
   title: string;
@@ -11,33 +18,41 @@ type ProjectLightboxProps = {
   darkImage?: string;
 };
 
-export function ProjectLightbox({ title, image, darkImage }: ProjectLightboxProps) {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isImageVisible, setIsImageVisible] = useState(false);
+const previewImageSize = { width: 1440, height: 900 };
+
+function useIsMounted() {
   const [isMounted, setIsMounted] = useState(false);
-  const [isDarkTheme, setIsDarkTheme] = useState(false);
-  const titleId = useId();
-  const activeImage = isDarkTheme && darkImage ? darkImage : image;
-  const activeImageSize = { width: 1440, height: 900 };
 
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
+  return isMounted;
+}
+
+function useResolvedTheme() {
+  const [resolvedTheme, setResolvedTheme] = useState<ResolvedTheme>("light");
+
   useEffect(() => {
     const syncTheme = () => {
-      setIsDarkTheme(document.body.dataset.theme === "dark");
+      setResolvedTheme(resolveTheme(getStoredTheme()));
     };
 
     syncTheme();
-
-    const observer = new MutationObserver(syncTheme);
-    observer.observe(document.body, { attributes: true, attributeFilter: ["data-theme"] });
+    const unsubscribeFromSystemTheme = subscribeToSystemThemeChange(syncTheme);
+    const unsubscribeFromTheme = subscribeToThemeChange(syncTheme);
 
     return () => {
-      observer.disconnect();
+      unsubscribeFromSystemTheme();
+      unsubscribeFromTheme();
     };
   }, []);
+
+  return resolvedTheme;
+}
+
+function useLightboxLifecycle(isOpen: boolean, onClose: () => void) {
+  const [isImageVisible, setIsImageVisible] = useState(false);
 
   useEffect(() => {
     if (!isOpen) {
@@ -47,7 +62,7 @@ export function ProjectLightbox({ title, image, darkImage }: ProjectLightboxProp
 
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
-        setIsOpen(false);
+        onClose();
       }
     };
 
@@ -64,7 +79,21 @@ export function ProjectLightbox({ title, image, darkImage }: ProjectLightboxProp
       document.body.style.overflow = previousOverflow;
       window.removeEventListener("keydown", onKeyDown);
     };
-  }, [isOpen]);
+  }, [isOpen, onClose]);
+
+  return isImageVisible;
+}
+
+export function ProjectLightbox({ title, image, darkImage }: ProjectLightboxProps) {
+  const [isOpen, setIsOpen] = useState(false);
+  const titleId = useId();
+  const closeLightbox = useCallback(() => {
+    setIsOpen(false);
+  }, []);
+  const isMounted = useIsMounted();
+  const resolvedTheme = useResolvedTheme();
+  const isImageVisible = useLightboxLifecycle(isOpen, closeLightbox);
+  const activeImage = resolvedTheme === "dark" && darkImage ? darkImage : image;
 
   return (
     <>
@@ -77,8 +106,8 @@ export function ProjectLightbox({ title, image, darkImage }: ProjectLightboxProp
         <Image
           src={activeImage}
           alt={`${title} interface preview`}
-          width={activeImageSize.width}
-          height={activeImageSize.height}
+          width={previewImageSize.width}
+          height={previewImageSize.height}
           className="project-image"
           sizes="(max-width: 680px) 335px, 900px"
         />
@@ -94,7 +123,7 @@ export function ProjectLightbox({ title, image, darkImage }: ProjectLightboxProp
           role="dialog"
           aria-modal="true"
           aria-labelledby={titleId}
-          onMouseDown={() => setIsOpen(false)}
+          onMouseDown={closeLightbox}
         >
           <div className="lightbox-panel" onMouseDown={(event) => event.stopPropagation()}>
             <div className="lightbox-header">
@@ -102,7 +131,7 @@ export function ProjectLightbox({ title, image, darkImage }: ProjectLightboxProp
               <button
                 type="button"
                 className="lightbox-close"
-                onClick={() => setIsOpen(false)}
+                onClick={closeLightbox}
                 aria-label="Close preview"
               >
                 <X aria-hidden="true" />
@@ -113,8 +142,8 @@ export function ProjectLightbox({ title, image, darkImage }: ProjectLightboxProp
                 <Image
                   src={activeImage}
                   alt={`${title} interface preview`}
-                  width={activeImageSize.width}
-                  height={activeImageSize.height}
+                  width={previewImageSize.width}
+                  height={previewImageSize.height}
                   className="lightbox-image"
                   sizes="(max-width: 1148px) calc(100vw - 48px), 1100px"
                 />

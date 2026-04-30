@@ -1,0 +1,134 @@
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 0;
+}
+
+.action-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.02em;
+  position: relative;
+  transition:
+    background-color 140ms var(--ease-out-strong),
+    color 140ms var(--ease-out-strong),
+    transform 140ms var(--ease-out-strong),
+    box-shadow 140ms var(--ease-out-strong),
+    border-color 140ms var(--ease-out-strong);
+  border: 1px solid transparent;
+}
+
+.action-link-primary {
+  background: var(--button-primary-bg);
+  color: var(--button-primary-text);
+  box-shadow: 0 10px 24px rgba(23, 23, 23, 0.08);
+}
+
+.action-link-secondary {
+  background: var(--button-secondary-bg);
+  color: var(--text-primary);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+.action-link:hover {
+  background: var(--button-hover-bg);
+  color: var(--text-primary);
+  box-shadow: inset 0 -1px 0 rgba(23, 23, 23, 0.06);
+}
+
+.action-link-primary:hover {
+  background: var(--button-primary-hover-bg);
+  color: var(--button-primary-text);
+  box-shadow: 0 10px 24px rgba(23, 23, 23, 0.1);
+}
+
+.action-link-secondary:hover {
+  background: var(--button-hover-bg);
+  color: var(--text-primary);
+}
+
+body[data-theme="dark"] .action-link-secondary:hover {
+  background: #2d2d2d;
+}
+
+.action-link:active {
+  transform: scale(0.97) translateY(0);
+  background: var(--button-press-bg);
+  box-shadow: none;
+}
+
+.copy-email-button:active {
+  background: var(--button-primary-bg);
+  color: var(--button-primary-text);
+  box-shadow: 0 10px 24px rgba(23, 23, 23, 0.08);
+}
+
+.copy-email-button {
+  width: 124px;
+  flex: 0 0 auto;
+}
+
+.copy-email-button__inner {
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+
+.copy-email-button__state {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  grid-area: 1 / 1;
+  white-space: nowrap;
+  transition:
+    opacity 180ms var(--ease-out-strong),
+    transform 180ms var(--ease-out-strong);
+}
+
+.copy-email-button__state svg {
+  width: 14px;
+  height: 14px;
+  stroke-width: 2;
+}
+
+.copy-email-button__state-default {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.copy-email-button__state-success {
+  opacity: 0;
+  transform: translateY(4px);
+}
+
+.copy-email-button.is-copied .copy-email-button__state-default {
+  opacity: 0;
+  transform: translateY(-4px);
+}
+
+.copy-email-button.is-copied .copy-email-button__state-success {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 680px) {
+  .action-link {
+    letter-spacing: -0.021em;
+  }
+
+  .actions {
+    gap: 8px;
+    margin-top: 0;
+  }
+}

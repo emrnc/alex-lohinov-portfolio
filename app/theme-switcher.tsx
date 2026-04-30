@@ -2,47 +2,38 @@
 
 import { Monitor, Moon, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
-
-type Theme = "system" | "light" | "dark";
-
-const storageKey = "portfolio-theme";
-
-function resolveTheme(theme: Theme) {
-  if (theme === "system") {
-    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-  }
-
-  return theme;
-}
+import {
+  applyTheme as applyStoredTheme,
+  getStoredTheme,
+  storeTheme,
+  subscribeToSystemThemeChange,
+  type Theme,
+} from "./theme";
 
 export function ThemeSwitcher() {
   const [theme, setTheme] = useState<Theme>("system");
 
   useEffect(() => {
-    const media = window.matchMedia("(prefers-color-scheme: dark)");
-    const storedTheme = (window.localStorage.getItem(storageKey) as Theme | null) ?? "system";
-
-    const applyTheme = (nextTheme: Theme) => {
-      document.body.dataset.theme = resolveTheme(nextTheme);
+    const syncTheme = (nextTheme: Theme) => {
+      applyStoredTheme(nextTheme);
       setTheme(nextTheme);
     };
 
     const handleMediaChange = () => {
-      const currentTheme = (window.localStorage.getItem(storageKey) as Theme | null) ?? "system";
-      applyTheme(currentTheme);
+      syncTheme(getStoredTheme());
     };
 
-    applyTheme(storedTheme);
-    media.addEventListener("change", handleMediaChange);
+    syncTheme(getStoredTheme());
+    const unsubscribe = subscribeToSystemThemeChange(handleMediaChange);
 
     return () => {
-      media.removeEventListener("change", handleMediaChange);
+      unsubscribe();
     };
   }, []);
 
   const onThemeChange = (nextTheme: Theme) => {
-    window.localStorage.setItem(storageKey, nextTheme);
-    document.body.dataset.theme = resolveTheme(nextTheme);
+    storeTheme(nextTheme);
+    applyStoredTheme(nextTheme);
     setTheme(nextTheme);
   };
 

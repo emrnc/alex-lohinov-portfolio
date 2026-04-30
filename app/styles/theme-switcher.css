@@ -1,0 +1,68 @@
+.theme-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 2px;
+  background: var(--switcher-bg);
+  border: 1px solid var(--switcher-border);
+  border-radius: 999px;
+  box-shadow: var(--switcher-shadow);
+  transition:
+    background-color 180ms var(--ease-out-strong),
+    border-color 180ms var(--ease-out-strong),
+    box-shadow 180ms var(--ease-out-strong);
+}
+
+.theme-button {
+  width: 26px;
+  height: 26px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-secondary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  cursor: pointer;
+  transition:
+    background-color 140ms var(--ease-out-strong),
+    color 140ms var(--ease-out-strong),
+    transform 140ms var(--ease-out-strong);
+}
+
+.theme-button:hover {
+  background: var(--button-hover-bg);
+  color: var(--text-primary);
+}
+
+.theme-button:active {
+  transform: scale(0.97);
+  background: var(--button-press-bg);
+}
+
+.theme-button:focus-visible,
+.actions a:focus-visible,
+.actions button:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.theme-button.is-active {
+  background: var(--icon-button-bg);
+  color: var(--text-primary);
+  box-shadow: var(--switcher-active-shadow);
+}
+
+.theme-button svg {
+  width: 16px;
+  height: 16px;
+  stroke-width: 1.25;
+}
+
+@media (max-width: 680px) {
+  .theme-button {
+    width: 24px;
+    height: 24px;
+  }
+}

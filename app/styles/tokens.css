@@ -1,0 +1,85 @@
+:root {
+  color-scheme: light;
+  --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out-strong: cubic-bezier(0.77, 0, 0.175, 1);
+  --page-bg:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0.74) 36%, rgba(250, 250, 250, 0.98) 100%),
+    linear-gradient(135deg, #f6f4ef 0%, #fafafa 44%, #f1eee8 100%);
+  --background: transparent;
+  --text-primary: #171717;
+  --text-secondary: #4c4c4c;
+  --switcher-bg: #f0f0f0;
+  --switcher-border: #ebebeb;
+  --icon-button-bg: #fafafa;
+  --button-primary-bg: #232325;
+  --button-primary-text: #fafafa;
+  --button-primary-hover-bg: #171717;
+  --button-secondary-bg: #f3f3f3;
+  --button-hover-bg: #f0f0f0;
+  --button-press-bg: #ebebeb;
+  --focus-ring: rgba(23, 23, 23, 0.18);
+  --surface-glow: rgba(255, 255, 255, 0.72);
+  --switcher-shadow:
+    0 1px 2px rgba(23, 23, 23, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  --switcher-active-shadow:
+    0 1px 1px rgba(23, 23, 23, 0.03),
+    0 6px 16px rgba(23, 23, 23, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.92);
+}
+
+body[data-theme="dark"] {
+  color-scheme: dark;
+  --page-bg:
+    radial-gradient(circle at top left, rgba(44, 44, 50, 0.58), rgba(16, 16, 18, 0) 28%),
+    linear-gradient(135deg, #0d0d10 0%, #151518 44%, #101113 100%);
+  --background: transparent;
+  --text-primary: #ededed;
+  --text-secondary: #a1a1a1;
+  --switcher-bg: #141414;
+  --switcher-border: #262626;
+  --icon-button-bg: #1f1f1f;
+  --button-primary-bg: #ededed;
+  --button-primary-text: #141414;
+  --button-primary-hover-bg: #ffffff;
+  --button-secondary-bg: #262626;
+  --button-hover-bg: #1f1f1f;
+  --button-press-bg: #262626;
+  --focus-ring: rgba(255, 255, 255, 0.24);
+  --surface-glow: rgba(255, 255, 255, 0.03);
+  --switcher-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  --switcher-active-shadow:
+    0 1px 1px rgba(0, 0, 0, 0.18),
+    0 10px 20px rgba(0, 0, 0, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: var(--page-bg);
+  color: var(--text-primary);
+  transition:
+    background 220ms var(--ease-out-strong),
+    color 220ms var(--ease-out-strong);
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
