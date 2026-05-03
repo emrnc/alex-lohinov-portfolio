@@ -102,6 +102,9 @@
 }
 .projects-section {
   width: min(900px, calc(100vw - 48px));
+  display: flex;
+  flex-direction: column;
+  gap: 112px;
   margin-top: 112px;
   margin-left: 50%;
   transform: translateX(-50%);
@@ -183,6 +186,7 @@
   }
   .projects-section {
     width: min(100%, 335px);
+    gap: 80px;
     margin-top: 80px;
     margin-left: 0;
     transform: none;

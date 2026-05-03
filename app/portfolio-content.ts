@@ -30,4 +30,11 @@ export const projects: Project[] = [
     image: "/project-accord.png",
     darkImage: "/project-accord-dark.png",
   },
+  {
+    title: "Metal",
+    description:
+      "An AI meeting assistant workspace for organizing calls, reviewing upcoming and past meetings, and keeping team conversations easy to scan.",
+    image: "/project-metal.png",
+    darkImage: "/project-metal-dark.png",
+  },
 ];
