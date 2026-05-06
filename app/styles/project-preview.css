@@ -76,9 +76,11 @@ body[data-theme="dark"] .project-frame:hover {
   display: grid;
   place-items: center;
   padding: 24px;
-  background: rgba(10, 10, 10, 0.72);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.14), rgba(0, 0, 0, 0.1)),
+    rgba(10, 10, 10, 0.2);
+  backdrop-filter: blur(22px) saturate(1.08);
+  -webkit-backdrop-filter: blur(22px) saturate(1.08);
   animation: lightbox-fade 180ms var(--ease-out-strong);
 }
 
