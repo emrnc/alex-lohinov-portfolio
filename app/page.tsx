@@ -50,7 +50,7 @@ export default function Home() {
         </nav>
 
         <section className="projects-section portfolio-gallery" aria-label="Project visuals">
-          {portfolioShots.map((shot) => (
+          {portfolioShots.map((shot, index) => (
             <ProjectLightbox
               key={shot.title}
               title={shot.title}
@@ -58,6 +58,7 @@ export default function Home() {
               darkImage={shot.darkImage}
               width={shot.width}
               height={shot.height}
+              priority={index === 0}
             />
           ))}
         </section>

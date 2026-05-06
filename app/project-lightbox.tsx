@@ -18,6 +18,7 @@ type ProjectLightboxProps = {
   darkImage?: string;
   width?: number;
   height?: number;
+  priority?: boolean;
 };
 
 const previewImageSize = { width: 1440, height: 900 };
@@ -86,7 +87,14 @@ function useLightboxLifecycle(isOpen: boolean, onClose: () => void) {
   return isImageVisible;
 }
 
-export function ProjectLightbox({ title, image, darkImage, width, height }: ProjectLightboxProps) {
+export function ProjectLightbox({
+  title,
+  image,
+  darkImage,
+  width,
+  height,
+  priority = false,
+}: ProjectLightboxProps) {
   const [isOpen, setIsOpen] = useState(false);
   const titleId = useId();
   const closeLightbox = useCallback(() => {
@@ -114,6 +122,7 @@ export function ProjectLightbox({ title, image, darkImage, width, height }: Proj
           height={imageHeight}
           className="project-image"
           sizes="(max-width: 680px) 335px, 800px"
+          loading={priority ? "eager" : "lazy"}
         />
         <span className="project-frame-action" aria-hidden="true">
           <Maximize2 />
