@@ -118,6 +118,15 @@
   grid-column: 1 / -1;
 }
 
+.portfolio-gallery .project-frame:nth-child(n + 2) {
+  aspect-ratio: 4 / 3;
+}
+
+.portfolio-gallery .project-frame:nth-child(n + 2) .project-image {
+  height: 100%;
+  object-fit: cover;
+}
+
 @keyframes fade-up {
   from {
     opacity: 0;
@@ -171,5 +180,14 @@
     grid-template-columns: 1fr;
     gap: 10px;
     margin-top: 72px;
+  }
+
+  .portfolio-gallery .project-frame:nth-child(n + 2) {
+    aspect-ratio: auto;
+  }
+
+  .portfolio-gallery .project-frame:nth-child(n + 2) .project-image {
+    height: auto;
+    object-fit: initial;
   }
 }
