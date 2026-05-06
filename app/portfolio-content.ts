@@ -3,11 +3,12 @@ export type SocialAction = {
   href: string;
 };
 
-export type Project = {
+export type PortfolioShot = {
   title: string;
-  description: string;
   image: string;
   darkImage?: string;
+  width: number;
+  height: number;
 };
 
 export const bio = [
@@ -22,19 +23,25 @@ export const actions: SocialAction[] = [
   { label: "Twitter", href: "https://x.com/alexlohinov" },
 ];
 
-export const projects: Project[] = [
+export const portfolioShots: PortfolioShot[] = [
   {
-    title: "Accord",
-    description:
-      "A minimal CRM design for teams that need a simple, focused way to manage companies, people, and sales workflows. I studied existing CRM products to reduce visual noise and shape a clear workspace inspired by Linear and Lightfield.",
-    image: "/project-accord.png",
-    darkImage: "/project-accord-dark.png",
+    title: "Portfolio companies overview",
+    image: "/project-portfolio-overview.jpg",
+    darkImage: "/project-portfolio-overview-dark.jpg",
+    width: 3200,
+    height: 1800,
   },
   {
-    title: "Metal",
-    description:
-      "An AI meeting assistant workspace for organizing calls, reviewing upcoming and past meetings, and keeping team conversations easy to scan.",
-    image: "/project-metal.png",
-    darkImage: "/project-metal-dark.png",
+    title: "Portfolio theme menu",
+    image: "/project-portfolio-menu.jpg",
+    darkImage: "/project-portfolio-menu-dark.jpg",
+    width: 1592,
+    height: 1060,
+  },
+  {
+    title: "Portfolio brand visual",
+    image: "/project-portfolio-visual.jpg",
+    width: 1576,
+    height: 1060,
   },
 ];

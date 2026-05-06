@@ -147,12 +147,11 @@ body[data-theme="dark"] .project-frame:hover {
 .lightbox-image {
   width: 100%;
   height: auto;
-  aspect-ratio: 16 / 10;
   max-height: calc(100vh - 96px);
   object-fit: contain;
   border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.12);
-  background: #111;
+  background: transparent;
 }
 
 .lightbox-image-placeholder {

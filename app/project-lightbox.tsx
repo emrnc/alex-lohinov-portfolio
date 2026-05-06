@@ -16,6 +16,8 @@ type ProjectLightboxProps = {
   title: string;
   image: string;
   darkImage?: string;
+  width?: number;
+  height?: number;
 };
 
 const previewImageSize = { width: 1440, height: 900 };
@@ -84,7 +86,7 @@ function useLightboxLifecycle(isOpen: boolean, onClose: () => void) {
   return isImageVisible;
 }
 
-export function ProjectLightbox({ title, image, darkImage }: ProjectLightboxProps) {
+export function ProjectLightbox({ title, image, darkImage, width, height }: ProjectLightboxProps) {
   const [isOpen, setIsOpen] = useState(false);
   const titleId = useId();
   const closeLightbox = useCallback(() => {
@@ -94,6 +96,8 @@ export function ProjectLightbox({ title, image, darkImage }: ProjectLightboxProp
   const resolvedTheme = useResolvedTheme();
   const isImageVisible = useLightboxLifecycle(isOpen, closeLightbox);
   const activeImage = resolvedTheme === "dark" && darkImage ? darkImage : image;
+  const imageWidth = width ?? previewImageSize.width;
+  const imageHeight = height ?? previewImageSize.height;
 
   return (
     <>
@@ -106,8 +110,8 @@ export function ProjectLightbox({ title, image, darkImage }: ProjectLightboxProp
         <Image
           src={activeImage}
           alt={`${title} interface preview`}
-          width={previewImageSize.width}
-          height={previewImageSize.height}
+          width={imageWidth}
+          height={imageHeight}
           className="project-image"
           sizes="(max-width: 680px) 335px, 900px"
         />
@@ -142,8 +146,8 @@ export function ProjectLightbox({ title, image, darkImage }: ProjectLightboxProp
                 <Image
                   src={activeImage}
                   alt={`${title} interface preview`}
-                  width={previewImageSize.width}
-                  height={previewImageSize.height}
+                  width={imageWidth}
+                  height={imageHeight}
                   className="lightbox-image"
                   sizes="(max-width: 1148px) calc(100vw - 48px), 1100px"
                 />

@@ -17,7 +17,7 @@
 }
 
 .portfolio-card {
-  width: min(100%, 600px);
+  width: min(100%, 800px);
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -101,13 +101,22 @@
   text-wrap: pretty;
 }
 .projects-section {
-  width: min(900px, calc(100vw - 48px));
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 112px;
   margin-top: 112px;
-  margin-left: 50%;
-  transform: translateX(-50%);
+}
+
+.portfolio-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 96px;
+}
+
+.portfolio-gallery .project-frame:first-child {
+  grid-column: 1 / -1;
 }
 
 .project-card {
@@ -190,6 +199,13 @@
     margin-top: 80px;
     margin-left: 0;
     transform: none;
+  }
+
+  .portfolio-gallery {
+    width: 100%;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    margin-top: 80px;
   }
 
   .project-card {
