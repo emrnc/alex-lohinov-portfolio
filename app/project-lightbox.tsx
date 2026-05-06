@@ -113,7 +113,7 @@ export function ProjectLightbox({ title, image, darkImage, width, height }: Proj
           width={imageWidth}
           height={imageHeight}
           className="project-image"
-          sizes="(max-width: 680px) 335px, 900px"
+          sizes="(max-width: 680px) 335px, 800px"
         />
         <span className="project-frame-action" aria-hidden="true">
           <Maximize2 />

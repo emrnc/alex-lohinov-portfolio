@@ -16,11 +16,11 @@
 
 .project-frame:hover {
   border-color: color-mix(in srgb, var(--text-secondary) 24%, var(--switcher-border));
-  box-shadow: 0 8px 22px rgba(23, 23, 23, 0.045);
+  box-shadow: 0 6px 18px rgba(23, 23, 23, 0.035);
 }
 
 body[data-theme="dark"] .project-frame:hover {
-  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.16);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
 }
 
 .project-frame:active {
@@ -42,8 +42,8 @@ body[data-theme="dark"] .project-frame:hover {
   position: absolute;
   right: 10px;
   bottom: 10px;
-  width: 32px;
-  height: 32px;
+  width: 34px;
+  height: 34px;
   display: grid;
   place-items: center;
   border-radius: 999px;
@@ -51,6 +51,7 @@ body[data-theme="dark"] .project-frame:hover {
   color: var(--text-primary);
   opacity: 0;
   transform: translateY(4px) scale(0.96);
+  box-shadow: 0 8px 18px rgba(23, 23, 23, 0.06);
   transition:
     opacity 160ms var(--ease-out-strong),
     transform 160ms var(--ease-out-strong);

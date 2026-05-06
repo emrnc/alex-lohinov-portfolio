@@ -25,23 +25,23 @@ export const actions: SocialAction[] = [
 
 export const portfolioShots: PortfolioShot[] = [
   {
-    title: "Portfolio companies overview",
-    image: "/project-portfolio-overview.jpg",
-    darkImage: "/project-portfolio-overview-dark.jpg",
-    width: 3200,
-    height: 1800,
+    title: "Accord companies workspace",
+    image: "/project-accord-overview.jpg",
+    darkImage: "/project-accord-overview-dark.jpg",
+    width: 2400,
+    height: 1350,
   },
   {
-    title: "Portfolio theme menu",
-    image: "/project-portfolio-menu.jpg",
-    darkImage: "/project-portfolio-menu-dark.jpg",
-    width: 1592,
-    height: 1060,
+    title: "Accord theme menu",
+    image: "/project-accord-menu.jpg",
+    darkImage: "/project-accord-menu-dark.jpg",
+    width: 2400,
+    height: 1350,
   },
   {
-    title: "Portfolio brand visual",
-    image: "/project-portfolio-visual.jpg",
-    width: 1576,
-    height: 1060,
+    title: "Accord brand visual",
+    image: "/project-accord-logo.jpg",
+    width: 2400,
+    height: 1350,
   },
 ];

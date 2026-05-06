@@ -104,54 +104,20 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 112px;
-  margin-top: 112px;
+  margin-top: 96px;
 }
 
 .portfolio-gallery {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 8px;
-  margin-top: 96px;
+  gap: 10px;
+  margin-top: 88px;
 }
 
 .portfolio-gallery .project-frame:first-child {
   grid-column: 1 / -1;
 }
 
-.project-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 32px;
-}
-
-.project-copy {
-  width: 100%;
-  max-width: 600px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.project-title,
-.project-description {
-  margin: 0;
-  font-size: 14px;
-  line-height: 20px;
-  letter-spacing: -0.02em;
-}
-
-.project-title {
-  font-weight: 500;
-  color: var(--text-primary);
-}
-
-.project-description {
-  font-weight: 400;
-  color: var(--text-secondary);
-  text-wrap: pretty;
-}
 @keyframes fade-up {
   from {
     opacity: 0;
@@ -195,8 +161,7 @@
   }
   .projects-section {
     width: min(100%, 335px);
-    gap: 80px;
-    margin-top: 80px;
+    margin-top: 72px;
     margin-left: 0;
     transform: none;
   }
@@ -204,16 +169,7 @@
   .portfolio-gallery {
     width: 100%;
     grid-template-columns: 1fr;
-    gap: 8px;
-    margin-top: 80px;
-  }
-
-  .project-card {
-    gap: 24px;
-    align-items: flex-start;
-  }
-
-  .project-copy {
-    max-width: 335px;
+    gap: 10px;
+    margin-top: 72px;
   }
 }
