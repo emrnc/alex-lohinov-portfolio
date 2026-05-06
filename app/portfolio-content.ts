@@ -33,10 +33,10 @@ export const portfolioShots: PortfolioShot[] = [
   },
   {
     title: "Accord theme menu",
-    image: "/project-accord-menu-20260506-2119.jpg",
-    darkImage: "/project-accord-menu-dark-20260506-2119.jpg",
+    image: "/project-accord-menu-20260506-2134.jpg",
+    darkImage: "/project-accord-menu-dark-20260506-2134.jpg",
     width: 2400,
-    height: 1350,
+    height: 1800,
   },
   {
     title: "Accord brand visual",
