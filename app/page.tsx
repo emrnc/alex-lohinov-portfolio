@@ -51,10 +51,7 @@ export default function Home() {
 
         <section className="projects-section" aria-label="Project visuals">
           {portfolioProjects.map((project, projectIndex) => (
-            <section className="project-group" key={project.title} aria-labelledby={`project-${project.title}`}>
-              <h2 className="project-title" id={`project-${project.title}`}>
-                {project.title}
-              </h2>
+            <section className="project-group" key={project.title} aria-label={`${project.title} visuals`}>
               <div className="portfolio-gallery">
                 {project.shots.map((shot, shotIndex) => (
                   <ProjectLightbox

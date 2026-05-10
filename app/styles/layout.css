@@ -111,16 +111,6 @@
 .project-group {
   display: flex;
   flex-direction: column;
-  gap: 14px;
-}
-
-.project-title {
-  margin: 0;
-  color: var(--text-primary);
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 20px;
-  letter-spacing: -0.02em;
 }
 
 .portfolio-gallery {
@@ -140,6 +130,16 @@
 .portfolio-gallery .project-frame:nth-child(n + 2) .project-image {
   height: 100%;
   object-fit: cover;
+}
+
+.project-group:nth-child(2) .project-frame:last-child {
+  grid-column: 1 / -1;
+  aspect-ratio: auto;
+}
+
+.project-group:nth-child(2) .project-frame:last-child .project-image {
+  height: auto;
+  object-fit: initial;
 }
 
 @keyframes fade-up {
