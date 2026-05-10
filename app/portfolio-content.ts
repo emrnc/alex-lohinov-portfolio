@@ -33,8 +33,8 @@ export const portfolioShots: PortfolioShot[] = [
   },
   {
     title: "Accord theme menu",
-    image: "/project-accord-menu-20260510-2160p.webp",
-    darkImage: "/project-accord-menu-dark-20260510-2160p.webp",
+    image: "/project-accord-menu-20260510-2160p-v2.webp",
+    darkImage: "/project-accord-menu-dark-20260510-2160p-v2.webp",
     width: 3840,
     height: 2160,
   },
