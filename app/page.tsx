@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { CopyEmailButton } from "./copy-email-button";
-import { actions, bio, portfolioShots } from "./portfolio-content";
+import { actions, bio, portfolioProjects } from "./portfolio-content";
 import { ProjectLightbox } from "./project-lightbox";
 import { ThemeSwitcher } from "./theme-switcher";
 
@@ -49,17 +49,21 @@ export default function Home() {
           ))}
         </nav>
 
-        <section className="projects-section portfolio-gallery" aria-label="Project visuals">
-          {portfolioShots.map((shot, index) => (
-            <ProjectLightbox
-              key={shot.title}
-              title={shot.title}
-              image={shot.image}
-              darkImage={shot.darkImage}
-              width={shot.width}
-              height={shot.height}
-              priority={index === 0}
-            />
+        <section className="projects-section" aria-label="Project visuals">
+          {portfolioProjects.map((project, projectIndex) => (
+            <div className="portfolio-gallery" key={project.title} aria-label={`${project.title} visuals`}>
+              {project.shots.map((shot, shotIndex) => (
+                <ProjectLightbox
+                  key={shot.title}
+                  title={shot.title}
+                  image={shot.image}
+                  darkImage={shot.darkImage}
+                  width={shot.width}
+                  height={shot.height}
+                  priority={projectIndex === 0 && shotIndex === 0}
+                />
+              ))}
+            </div>
           ))}
         </section>
       </section>

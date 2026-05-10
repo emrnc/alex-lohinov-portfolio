@@ -11,6 +11,11 @@ export type PortfolioShot = {
   height: number;
 };
 
+export type PortfolioProject = {
+  title: string;
+  shots: PortfolioShot[];
+};
+
 export const bio = [
   "I am a Product Designer focused on shaping clear, scalable digital products from concept to interface.",
   "Beyond designing in Figma, I build interactive product flows that help teams validate ideas and decisions earlier.",
@@ -23,25 +28,62 @@ export const actions: SocialAction[] = [
   { label: "Twitter", href: "https://x.com/alexlohinov" },
 ];
 
-export const portfolioShots: PortfolioShot[] = [
+export const portfolioProjects: PortfolioProject[] = [
   {
-    title: "Accord companies workspace",
-    image: "/project-accord-overview-20260510-2160p.webp",
-    darkImage: "/project-accord-overview-dark-20260510-2160p.webp",
-    width: 3840,
-    height: 2160,
+    title: "Accord",
+    shots: [
+      {
+        title: "Accord companies workspace",
+        image: "/project-accord-overview-20260510-2160p.webp",
+        darkImage: "/project-accord-overview-dark-20260510-2160p.webp",
+        width: 3840,
+        height: 2160,
+      },
+      {
+        title: "Accord theme menu",
+        image: "/project-accord-menu-20260510-2160p-v2.webp",
+        darkImage: "/project-accord-menu-dark-20260510-2160p-v2.webp",
+        width: 3840,
+        height: 2160,
+      },
+      {
+        title: "Accord brand visual",
+        image: "/project-accord-logo-20260510-2160p.webp",
+        width: 3840,
+        height: 2160,
+      },
+    ],
   },
   {
-    title: "Accord theme menu",
-    image: "/project-accord-menu-20260510-2160p-v2.webp",
-    darkImage: "/project-accord-menu-dark-20260510-2160p-v2.webp",
-    width: 3840,
-    height: 2160,
-  },
-  {
-    title: "Accord brand visual",
-    image: "/project-accord-logo-20260510-2160p.webp",
-    width: 3840,
-    height: 2160,
+    title: "Pascal",
+    shots: [
+      {
+        title: "Pascal editor workspace",
+        image: "/project-pascal-overview-20260510-2160p.webp",
+        darkImage: "/project-pascal-overview-dark-20260510-2160p.webp",
+        width: 3840,
+        height: 2160,
+      },
+      {
+        title: "Pascal slash menu",
+        image: "/project-pascal-slash-menu-20260510-2160p-v2.webp",
+        darkImage: "/project-pascal-slash-menu-dark-20260510-2160p-v2.webp",
+        width: 3840,
+        height: 2160,
+      },
+      {
+        title: "Pascal brand visual",
+        image: "/project-pascal-logo-20260510-2160p.webp",
+        width: 3840,
+        height: 2160,
+      },
+      {
+        title: "Pascal command menu",
+        image: "/project-pascal-command-menu-20260510-2160p-v2.webp",
+        darkImage: "/project-pascal-command-menu-dark-20260510-2160p-v2.webp",
+        width: 3840,
+        height: 2160,
+      },
+    ],
   },
 ];
