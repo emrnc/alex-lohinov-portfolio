@@ -26,22 +26,22 @@ export const actions: SocialAction[] = [
 export const portfolioShots: PortfolioShot[] = [
   {
     title: "Accord companies workspace",
-    image: "/project-accord-overview-20260510.jpg",
-    darkImage: "/project-accord-overview-dark-20260510.jpg",
-    width: 2400,
-    height: 1350,
+    image: "/project-accord-overview-20260510-2160p.webp",
+    darkImage: "/project-accord-overview-dark-20260510-2160p.webp",
+    width: 3840,
+    height: 2160,
   },
   {
     title: "Accord theme menu",
-    image: "/project-accord-menu-20260510.jpg",
-    darkImage: "/project-accord-menu-dark-20260510.jpg",
-    width: 2400,
-    height: 1350,
+    image: "/project-accord-menu-20260510-2160p.webp",
+    darkImage: "/project-accord-menu-dark-20260510-2160p.webp",
+    width: 3840,
+    height: 2160,
   },
   {
     title: "Accord brand visual",
-    image: "/project-accord-logo-20260510.jpg",
-    width: 2400,
-    height: 1350,
+    image: "/project-accord-logo-20260510-2160p.webp",
+    width: 3840,
+    height: 2160,
   },
 ];
