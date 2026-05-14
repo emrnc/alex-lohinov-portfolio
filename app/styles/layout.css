@@ -48,7 +48,7 @@
   border-radius: 999px;
   object-fit: cover;
   object-position: center;
-  box-shadow: 0 0 0 1px rgba(23, 23, 23, 0.04);
+  box-shadow: 0 0 0 0.5px rgba(23, 23, 23, 0.04);
 }
 .identity {
   display: flex;
@@ -115,7 +115,7 @@
 .project-group + .project-group {
   margin-top: 40px;
   padding-top: 40px;
-  border-top: 1px solid color-mix(in srgb, var(--text-secondary) 14%, transparent);
+  border-top: 0.5px solid color-mix(in srgb, var(--text-secondary) 14%, transparent);
 }
 
 .portfolio-gallery {

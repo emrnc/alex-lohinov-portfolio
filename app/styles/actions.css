@@ -24,7 +24,7 @@
     transform 140ms var(--ease-out-strong),
     box-shadow 140ms var(--ease-out-strong),
     border-color 140ms var(--ease-out-strong);
-  border: 1px solid transparent;
+  border: 0.5px solid transparent;
 }
 
 .action-link-primary {
@@ -38,7 +38,7 @@
   color: var(--text-primary);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.04),
-    0 0 0 1px rgba(255, 255, 255, 0.06);
+    0 0 0 0.5px rgba(255, 255, 255, 0.06);
 }
 
 .action-link:hover {

@@ -3,19 +3,22 @@ import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 const metadataBase = new URL("https://emrnc.vercel.app/");
+const title = "Alex Lohinov - Product Designer for Digital Interfaces";
+const description =
+  "I am a Product Designer shaping clear, scalable digital products from early concept and product strategy to polished interface systems for real users.";
 
 export const metadata: Metadata = {
   metadataBase,
-  title: "Alex Lohinov - Product Designer",
-  description: "I am a Product Designer focused on shaping clear, scalable digital products from concept to interface.",
+  title,
+  description,
   icons: {
     icon: "/favicon.jpg",
     shortcut: "/favicon.jpg",
     apple: "/favicon.jpg",
   },
   openGraph: {
-    title: "Alex Lohinov - Product Designer",
-    description: "I am a Product Designer focused on shaping clear, scalable digital products from concept to interface.",
+    title,
+    description,
     images: [
       {
         url: "/social-preview.png",
@@ -29,8 +32,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Alex Lohinov - Product Designer",
-    description: "I am a Product Designer focused on shaping clear, scalable digital products from concept to interface.",
+    title,
+    description,
     images: ["/social-preview.png"],
   },
 };
