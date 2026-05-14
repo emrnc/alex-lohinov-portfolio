@@ -132,12 +132,12 @@
   object-fit: cover;
 }
 
-.project-group:nth-child(2) .project-frame:last-child {
+.project-group[data-project="pascal"] .project-frame:last-child {
   grid-column: 1 / -1;
   aspect-ratio: auto;
 }
 
-.project-group:nth-child(2) .project-frame:last-child .project-image {
+.project-group[data-project="pascal"] .project-frame:last-child .project-image {
   height: auto;
   object-fit: initial;
 }

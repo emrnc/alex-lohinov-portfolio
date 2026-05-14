@@ -30,6 +30,18 @@ export const actions: SocialAction[] = [
 
 export const portfolioProjects: PortfolioProject[] = [
   {
+    title: "Metal",
+    shots: [
+      {
+        title: "Metal language learning app",
+        image: "/project-metal-overview-20260514-2160p.webp",
+        darkImage: "/project-metal-overview-dark-20260514-2160p.webp",
+        width: 3840,
+        height: 2160,
+      },
+    ],
+  },
+  {
     title: "Accord",
     shots: [
       {
