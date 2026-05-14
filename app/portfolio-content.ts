@@ -98,4 +98,33 @@ export const portfolioProjects: PortfolioProject[] = [
       },
     ],
   },
+  {
+    title: "WAKANNAI",
+    shots: [
+      {
+        title: "WAKANNAI collection landing page",
+        image: "/project-wakannai-home-20260514-2160p.webp",
+        width: 3840,
+        height: 2160,
+      },
+      {
+        title: "WAKANNAI product detail page",
+        image: "/project-wakannai-product-20260514-2160p.webp",
+        width: 3840,
+        height: 2160,
+      },
+      {
+        title: "WAKANNAI men's shop page",
+        image: "/project-wakannai-men-shop-20260514-2160p.webp",
+        width: 3840,
+        height: 2160,
+      },
+      {
+        title: "WAKANNAI best seller section",
+        image: "/project-wakannai-best-seller-20260514-2160p.webp",
+        width: 3840,
+        height: 2160,
+      },
+    ],
+  },
 ];
