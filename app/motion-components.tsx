@@ -1,8 +1,4 @@
-"use client";
-
-import { motion, useAnimationControls, useReducedMotion } from "motion/react";
-import { useEffect } from "react";
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 
 type PortfolioMotionProps = {
   children: ReactNode;
@@ -33,37 +29,29 @@ export function EnterAnimation({
   ariaLabel,
   dataProject,
 }: EnterAnimationProps) {
-  const shouldReduceMotion = useReducedMotion();
-  const controls = useAnimationControls();
-  const MotionElement = motion[as];
+  const style = { "--stagger": stagger } as CSSProperties;
+  const props = {
+    className: ["animate-enter", "animate-enter-individual-title", className].filter(Boolean).join(" "),
+    style,
+    "aria-label": ariaLabel,
+    "data-project": dataProject,
+  } as const;
 
-  useEffect(() => {
-    if (shouldReduceMotion) {
-      controls.set({ y: 0, filter: "blur(0px)" });
-      return;
-    }
+  if (as === "header") {
+    return <header {...props}>{children}</header>;
+  }
 
-    controls.set({ y: 8, filter: "blur(6px)" });
-    void controls.start({
-      y: 0,
-      filter: "blur(0px)",
-      transition: {
-        duration: 0.56,
-        delay: stagger * 0.06,
-        ease: [0.23, 1, 0.32, 1],
-      },
-    });
-  }, [controls, shouldReduceMotion, stagger]);
+  if (as === "nav") {
+    return <nav {...props}>{children}</nav>;
+  }
+
+  if (as === "section") {
+    return <section {...props}>{children}</section>;
+  }
 
   return (
-    <MotionElement
-      className={["animate-enter", className].filter(Boolean).join(" ")}
-      aria-label={ariaLabel}
-      data-project={dataProject}
-      initial={false}
-      animate={controls}
-    >
+    <div {...props}>
       {children}
-    </MotionElement>
+    </div>
   );
 }
