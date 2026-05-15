@@ -15,7 +15,6 @@
   padding: 0;
   background: var(--background);
   position: relative;
-  animation: blur-reveal 1000ms var(--ease-out-strong) both;
 }
 
 .top-row,
@@ -39,7 +38,7 @@
   border-radius: 999px;
   object-fit: cover;
   object-position: center;
-  box-shadow: 0 0 0 0.5px rgba(23, 23, 23, 0.04);
+  box-shadow: 0 0 0 0.5px oklch(0.205 0 0 / 0.04);
 }
 .identity {
   display: flex;
@@ -57,8 +56,7 @@
   margin: 0;
 }
 
-.identity-name,
-.actions a {
+.identity-name {
   font-size: 14px;
   line-height: 20px;
   letter-spacing: -0.02em;
@@ -88,9 +86,6 @@
   margin-top: 0;
 }
 
-.bio-text {
-  text-wrap: pretty;
-}
 .projects-section {
   width: 100%;
   display: flex;
@@ -114,25 +109,6 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-}
-
-@keyframes blur-reveal {
-  from {
-    opacity: 0;
-    filter: blur(14px);
-    transform: translateY(10px) scale(0.992);
-  }
-  to {
-    opacity: 1;
-    filter: blur(0);
-    transform: translateY(0);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .portfolio-card {
-    animation: none;
-  }
 }
 
 @media (max-width: 680px) {

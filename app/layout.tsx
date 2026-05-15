@@ -5,7 +5,7 @@ import Script from "next/script";
 import "./globals.css";
 
 const metadataBase = new URL("https://emrnc.vercel.app/");
-const title = "Alex Lohinov - Product Designer for Digital Interfaces";
+const title = "Alex Lohinov • Product Designer";
 const description =
   "I am a Product Designer shaping clear, scalable digital products from early concept and product strategy to polished interface systems for real users.";
 
@@ -47,7 +47,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <body className="antialiased">
         <Script id="scroll-restoration" strategy="beforeInteractive">
           {`
             const navigationEntry = performance.getEntriesByType("navigation")[0];

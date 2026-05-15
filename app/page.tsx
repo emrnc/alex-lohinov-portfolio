@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { CopyEmailButton } from "./copy-email-button";
+import { EnterAnimation, PortfolioMotion } from "./motion-components";
 import { actions, bio, portfolioProjects } from "./portfolio-content";
 import { ProjectLightbox } from "./project-lightbox";
 import { ThemeSwitcher } from "./theme-switcher";
@@ -7,8 +8,8 @@ import { ThemeSwitcher } from "./theme-switcher";
 export default function Home() {
   return (
     <main className="page-shell">
-      <section className="portfolio-card" aria-label="Portfolio">
-        <div className="top-row">
+      <PortfolioMotion>
+        <EnterAnimation stagger={1} className="top-row">
           <Image
             className="avatar"
             src="/avatar.png"
@@ -18,22 +19,22 @@ export default function Home() {
             priority
           />
           <ThemeSwitcher />
-        </div>
+        </EnterAnimation>
 
-        <header className="identity">
+        <EnterAnimation as="header" stagger={2} className="identity">
           <h1 className="identity-name">Alex Lohinov</h1>
           <p className="identity-position">Product Designer</p>
-        </header>
+        </EnterAnimation>
 
-        <div className="bio">
+        <EnterAnimation stagger={3} className="bio">
           {bio.map((item) => (
             <p key={item} className="bio-text">
               {item}
             </p>
           ))}
-        </div>
+        </EnterAnimation>
 
-        <nav className="actions" aria-label="Social links">
+        <EnterAnimation as="nav" stagger={4} className="actions" ariaLabel="Social links">
           <CopyEmailButton email="hello.lohinov@gmail.com" />
           {actions.map((action) => (
             <a
@@ -47,15 +48,17 @@ export default function Home() {
               {action.label}
             </a>
           ))}
-        </nav>
+        </EnterAnimation>
 
         <section className="projects-section" aria-label="Project visuals">
           {portfolioProjects.map((project, projectIndex) => (
-            <section
+            <EnterAnimation
+              as="section"
               className="project-group"
               key={project.title}
-              aria-label={`${project.title} visuals`}
-              data-project={project.title.toLowerCase()}
+              stagger={5 + projectIndex}
+              ariaLabel={`${project.title} visuals`}
+              dataProject={project.title.toLowerCase()}
             >
               <div className="portfolio-gallery">
                 {project.shots.map((shot, shotIndex) => (
@@ -70,10 +73,10 @@ export default function Home() {
                   />
                 ))}
               </div>
-            </section>
+            </EnterAnimation>
           ))}
         </section>
-      </section>
+      </PortfolioMotion>
     </main>
   );
 }

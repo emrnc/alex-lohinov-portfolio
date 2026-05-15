@@ -8,9 +8,9 @@
   border-radius: 999px;
   box-shadow: var(--switcher-shadow);
   transition:
-    background-color 180ms var(--ease-out-strong),
-    border-color 180ms var(--ease-out-strong),
-    box-shadow 180ms var(--ease-out-strong);
+    background-color .18s var(--ease-out-strong),
+    border-color .18s var(--ease-out-strong),
+    box-shadow .18s var(--ease-out-strong);
 }
 
 .theme-button {
@@ -26,9 +26,9 @@
   padding: 4px;
   cursor: pointer;
   transition:
-    background-color 140ms var(--ease-out-strong),
-    color 140ms var(--ease-out-strong),
-    transform 140ms var(--ease-out-strong);
+    background-color .14s var(--ease-out-strong),
+    color .14s var(--ease-out-strong),
+    transform .14s var(--ease-out-strong);
 }
 
 .theme-button:hover {

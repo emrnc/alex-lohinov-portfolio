@@ -14,43 +14,42 @@
   border-radius: 999px;
   text-decoration: none;
   font-weight: 500;
-  font-size: 14px;
+  font-size: 13px;
   line-height: 20px;
   letter-spacing: -0.02em;
   position: relative;
   transition:
-    background-color 140ms var(--ease-out-strong),
-    color 140ms var(--ease-out-strong),
-    transform 140ms var(--ease-out-strong),
-    box-shadow 140ms var(--ease-out-strong),
-    border-color 140ms var(--ease-out-strong);
+    background-color .14s var(--ease-out-strong),
+    color .14s var(--ease-out-strong),
+    transform .14s var(--ease-out-strong),
+    box-shadow .14s var(--ease-out-strong);
   border: 0.5px solid transparent;
 }
 
 .action-link-primary {
   background: var(--button-primary-bg);
   color: var(--button-primary-text);
-  box-shadow: 0 10px 24px rgba(23, 23, 23, 0.08);
+  box-shadow: 0 10px 24px oklch(0.205 0 0 / 0.08);
 }
 
 .action-link-secondary {
   background: var(--button-secondary-bg);
   color: var(--text-primary);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.04),
-    0 0 0 0.5px rgba(255, 255, 255, 0.06);
+    inset 0 1px 0 oklch(1 0 0 / 0.04),
+    0 0 0 0.5px oklch(1 0 0 / 0.06);
 }
 
 .action-link:hover {
   background: var(--button-hover-bg);
   color: var(--text-primary);
-  box-shadow: inset 0 -1px 0 rgba(23, 23, 23, 0.06);
+  box-shadow: inset 0 -1px 0 oklch(0.205 0 0 / 0.06);
 }
 
 .action-link-primary:hover {
   background: var(--button-primary-hover-bg);
   color: var(--button-primary-text);
-  box-shadow: 0 10px 24px rgba(23, 23, 23, 0.1);
+  box-shadow: 0 10px 24px oklch(0.205 0 0 / 0.1);
 }
 
 .action-link-secondary:hover {
@@ -59,7 +58,7 @@
 }
 
 body[data-theme="dark"] .action-link-secondary:hover {
-  background: #2d2d2d;
+  background: oklch(0.297 0 0);
 }
 
 .action-link:active {
@@ -71,7 +70,7 @@ body[data-theme="dark"] .action-link-secondary:hover {
 .copy-email-button:active {
   background: var(--button-primary-bg);
   color: var(--button-primary-text);
-  box-shadow: 0 10px 24px rgba(23, 23, 23, 0.08);
+  box-shadow: 0 10px 24px oklch(0.205 0 0 / 0.08);
 }
 
 .copy-email-button {
@@ -98,10 +97,7 @@ body[data-theme="dark"] .action-link-secondary:hover {
   place-items: center;
   font-size: 16px;
   line-height: 1;
-  opacity: 0;
-  transform: translate3d(0, 0, 0) rotate(0deg) scale(0.6);
-  animation: copy-confetti-pop 1100ms var(--ease-out-strong) var(--confetti-delay) forwards;
-  filter: drop-shadow(0 2px 3px rgba(23, 23, 23, 0.1));
+  filter: drop-shadow(0 2px 3px oklch(0.205 0 0 / 0.1));
 }
 
 .copy-email-button__inner {
@@ -116,58 +112,12 @@ body[data-theme="dark"] .action-link-secondary:hover {
   gap: 6px;
   grid-area: 1 / 1;
   white-space: nowrap;
-  transition:
-    opacity 180ms var(--ease-out-strong),
-    transform 180ms var(--ease-out-strong);
 }
 
 .copy-email-button__state svg {
   width: 14px;
   height: 14px;
   stroke-width: 2;
-}
-
-.copy-email-button__state-default {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.copy-email-button__state-success {
-  opacity: 0;
-  transform: translateY(4px);
-}
-
-.copy-email-button.is-copied .copy-email-button__state-default {
-  opacity: 0;
-  transform: translateY(-4px);
-}
-
-.copy-email-button.is-copied .copy-email-button__state-success {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-@keyframes copy-confetti-pop {
-  0% {
-    opacity: 0;
-    transform: translate3d(0, 0, 0) rotate(0deg) scale(0.6);
-  }
-  14% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-    transform: translate3d(var(--confetti-x), var(--confetti-y), 0) rotate(var(--confetti-rotation)) scale(1.1);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .copy-email-button__confetti-piece {
-    animation: none;
-  }
 }
 
 @media (max-width: 680px) {

@@ -1,7 +1,7 @@
 "use client";
 
 import { Check, Copy } from "lucide-react";
-import type { CSSProperties } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useEffect, useState } from "react";
 
 type CopyEmailButtonProps = {
@@ -44,6 +44,7 @@ function createConfettiPieces() {
 export function CopyEmailButton({ email }: CopyEmailButtonProps) {
   const [copied, setCopied] = useState(false);
   const [confetti, setConfetti] = useState<ConfettiPiece[]>([]);
+  const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
     if (!copied) return;
@@ -82,40 +83,48 @@ export function CopyEmailButton({ email }: CopyEmailButtonProps) {
   return (
     <button
       type="button"
-      className={`action-link action-link-primary copy-email-button ${copied ? "is-copied" : ""}`}
+      className="action-link action-link-primary copy-email-button"
       onClick={handleCopy}
       aria-live="polite"
     >
       <span className="copy-email-button__confetti" aria-hidden="true">
-        {confetti.map((piece) => (
-          <span
-            key={piece.id}
-            className="copy-email-button__confetti-piece"
-            style={
-              {
-                "--confetti-x": `${piece.x}px`,
-                "--confetti-y": `${piece.y}px`,
-                "--confetti-rotation": `${piece.rotation}deg`,
-                "--confetti-delay": `${piece.delay}ms`,
-              } as CSSProperties
-            }
-          >
-            {piece.emoji}
-          </span>
-        ))}
+        <AnimatePresence>
+          {prefersReducedMotion ? null : confetti.map((piece) => (
+            <motion.span
+              key={piece.id}
+              className="copy-email-button__confetti-piece"
+              initial={{ opacity: 0, x: 0, y: 0, rotate: 0, scale: 0.6 }}
+              animate={{ opacity: [0, 1, 1, 0], x: piece.x, y: piece.y, rotate: piece.rotation, scale: 1.1 }}
+              transition={{ duration: 1.1, delay: piece.delay / 1000, ease: [0.23, 1, 0.32, 1] }}
+            >
+              {piece.emoji}
+            </motion.span>
+          ))}
+        </AnimatePresence>
       </span>
       <span className="copy-email-button__inner">
-        {copied ? (
-          <span className="copy-email-button__state copy-email-button__state-success">
-            <Check aria-hidden="true" />
-            <span>Copied</span>
-          </span>
-        ) : (
-          <span className="copy-email-button__state copy-email-button__state-default">
-            <Copy aria-hidden="true" />
-            <span>Copy Email</span>
-          </span>
-        )}
+        <AnimatePresence initial={false} mode="popLayout">
+          <motion.span
+            key={copied ? "check" : "copy"}
+            className="copy-email-button__state"
+            initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.25 }}
+            animate={prefersReducedMotion ? undefined : { opacity: 1, scale: 1 }}
+            exit={prefersReducedMotion ? undefined : { opacity: 0, scale: 0.25 }}
+            transition={{ type: "spring", duration: 0.3, bounce: 0 }}
+          >
+            {copied ? (
+              <>
+                <Check aria-hidden="true" />
+                <span>Copied</span>
+              </>
+            ) : (
+              <>
+                <Copy aria-hidden="true" />
+                <span>Copy Email</span>
+              </>
+            )}
+          </motion.span>
+        </AnimatePresence>
       </span>
     </button>
   );

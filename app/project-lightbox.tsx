@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { Maximize2, X } from "lucide-react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useCallback, useEffect, useId, useState } from "react";
 import { createPortal } from "react-dom";
 import {
@@ -103,6 +104,7 @@ export function ProjectLightbox({
   const isMounted = useIsMounted();
   const resolvedTheme = useResolvedTheme();
   const isImageVisible = useLightboxLifecycle(isOpen, closeLightbox);
+  const prefersReducedMotion = useReducedMotion();
   const activeImage = resolvedTheme === "dark" && darkImage ? darkImage : image;
   const imageWidth = width ?? previewImageSize.width;
   const imageHeight = height ?? previewImageSize.height;
@@ -120,7 +122,7 @@ export function ProjectLightbox({
           alt={`${title} interface preview`}
           width={imageWidth}
           height={imageHeight}
-          className="project-image"
+          className="project-image border-overlay"
           sizes="(max-width: 680px) 335px, 800px"
           loading={priority ? "eager" : "lazy"}
         />
@@ -129,43 +131,58 @@ export function ProjectLightbox({
         </span>
       </button>
 
-      {isOpen && isMounted
+      {isMounted
         ? createPortal(
-        <div
-          className="lightbox"
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby={titleId}
-          onMouseDown={closeLightbox}
-        >
-          <div className="lightbox-panel" onMouseDown={(event) => event.stopPropagation()}>
-            <div className="lightbox-header">
-              <h2 id={titleId}>{title}</h2>
-              <button
-                type="button"
-                className="lightbox-close"
-                onClick={closeLightbox}
-                aria-label="Close preview"
+          <AnimatePresence>
+            {isOpen ? (
+              <motion.div
+                className="lightbox"
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby={titleId}
+                onMouseDown={closeLightbox}
+                initial={prefersReducedMotion ? false : { opacity: 0 }}
+                animate={prefersReducedMotion ? undefined : { opacity: 1 }}
+                exit={prefersReducedMotion ? undefined : { opacity: 0 }}
+                transition={{ duration: 0.18, ease: [0.23, 1, 0.32, 1] }}
               >
-                <X aria-hidden="true" />
-              </button>
-            </div>
-            <div className="lightbox-image-wrap">
-              {isImageVisible ? (
-                <Image
-                  src={activeImage}
-                  alt={`${title} interface preview`}
-                  width={imageWidth}
-                  height={imageHeight}
-                  className="lightbox-image"
-                  sizes="(max-width: 1148px) calc(100vw - 48px), 1100px"
-                />
-              ) : (
-                <div className="lightbox-image lightbox-image-placeholder" aria-hidden="true" />
-              )}
-            </div>
-          </div>
-        </div>,
+                <motion.div
+                  className="lightbox-panel"
+                  onMouseDown={(event) => event.stopPropagation()}
+                  initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.98, y: 8 }}
+                  animate={prefersReducedMotion ? undefined : { opacity: 1, scale: 1, y: 0 }}
+                  exit={prefersReducedMotion ? undefined : { opacity: 0, scale: 0.98, y: 8 }}
+                  transition={{ duration: 0.22, ease: [0.23, 1, 0.32, 1] }}
+                >
+                  <div className="lightbox-header">
+                    <h2 id={titleId}>{title}</h2>
+                    <button
+                      type="button"
+                      className="lightbox-close"
+                      onClick={closeLightbox}
+                      aria-label="Close preview"
+                    >
+                      <X aria-hidden="true" />
+                    </button>
+                  </div>
+                  <div className="lightbox-image-wrap">
+                    {isImageVisible ? (
+                      <Image
+                        src={activeImage}
+                        alt={`${title} interface preview`}
+                        width={imageWidth}
+                        height={imageHeight}
+                        className="lightbox-image border-overlay"
+                        sizes="(max-width: 1148px) calc(100vw - 48px), 1100px"
+                      />
+                    ) : (
+                      <div className="lightbox-image lightbox-image-placeholder border-overlay" aria-hidden="true" />
+                    )}
+                  </div>
+                </motion.div>
+              </motion.div>
+            ) : null}
+          </AnimatePresence>,
           document.body,
         )
         : null}

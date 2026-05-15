@@ -3,24 +3,31 @@
   display: block;
   position: relative;
   padding: 0;
-  border: 0.5px solid var(--switcher-border);
-  border-radius: 6px;
+  border: 0;
+  border-radius: var(--radius-project-frame);
   overflow: hidden;
   background: color-mix(in srgb, var(--icon-button-bg) 82%, transparent);
   cursor: zoom-in;
   transition:
-    border-color 160ms var(--ease-out-strong),
-    box-shadow 160ms var(--ease-out-strong),
-    transform 160ms var(--ease-out-strong);
+    box-shadow .16s var(--ease-out-strong),
+    transform .16s var(--ease-out-strong);
+}
+
+.border-overlay {
+  outline: 1px solid oklch(0 0 0 / 0.1);
+  outline-offset: -1px;
+}
+
+body[data-theme="dark"] .border-overlay {
+  outline-color: oklch(1 0 0 / 0.1);
 }
 
 .project-frame:hover {
-  border-color: color-mix(in srgb, var(--text-secondary) 24%, var(--switcher-border));
-  box-shadow: 0 6px 18px rgba(23, 23, 23, 0.035);
+  box-shadow: 0 6px 18px oklch(0.205 0 0 / 0.035);
 }
 
 body[data-theme="dark"] .project-frame:hover {
-  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 8px 22px oklch(0 0 0 / 0.12);
 }
 
 .project-frame:active {
@@ -33,9 +40,10 @@ body[data-theme="dark"] .project-frame:hover {
 }
 
 .project-image {
-  display: block;
   width: 100%;
   height: auto;
+  vertical-align: middle;
+  border-radius: var(--radius-project-image);
 }
 
 .project-frame-action {
@@ -51,10 +59,10 @@ body[data-theme="dark"] .project-frame:hover {
   color: var(--text-primary);
   opacity: 0;
   transform: translateY(4px) scale(0.96);
-  box-shadow: 0 8px 18px rgba(23, 23, 23, 0.06);
+  box-shadow: 0 8px 18px oklch(0.205 0 0 / 0.06);
   transition:
-    opacity 160ms var(--ease-out-strong),
-    transform 160ms var(--ease-out-strong);
+    opacity .16s var(--ease-out-strong),
+    transform .16s var(--ease-out-strong);
 }
 
 .project-frame:hover .project-frame-action,
@@ -77,11 +85,10 @@ body[data-theme="dark"] .project-frame:hover {
   place-items: center;
   padding: 24px;
   background:
-    linear-gradient(rgba(0, 0, 0, 0.14), rgba(0, 0, 0, 0.1)),
-    rgba(10, 10, 10, 0.2);
-  backdrop-filter: blur(22px) saturate(1.08);
+    linear-gradient(oklch(0 0 0 / 0.14), oklch(0 0 0 / 0.1)),
+    oklch(0.145 0 0 / 0.2);
   -webkit-backdrop-filter: blur(22px) saturate(1.08);
-  animation: lightbox-fade 180ms var(--ease-out-strong);
+  backdrop-filter: blur(22px) saturate(1.08);
 }
 
 .lightbox-panel {
@@ -90,7 +97,6 @@ body[data-theme="dark"] .project-frame:hover {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  animation: lightbox-panel-in 220ms var(--ease-out-strong);
 }
 
 .lightbox-header {
@@ -98,7 +104,7 @@ body[data-theme="dark"] .project-frame:hover {
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  color: #fafafa;
+  color: oklch(0.985 0 0);
 }
 
 .lightbox-header h2 {
@@ -117,16 +123,16 @@ body[data-theme="dark"] .project-frame:hover {
   padding: 0;
   border: 0;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.1);
-  color: #fafafa;
+  background: oklch(1 0 0 / 0.1);
+  color: oklch(0.985 0 0);
   cursor: pointer;
   transition:
-    background-color 140ms var(--ease-out-strong),
-    transform 140ms var(--ease-out-strong);
+    background-color .14s var(--ease-out-strong),
+    transform .14s var(--ease-out-strong);
 }
 
 .lightbox-close:hover {
-  background: rgba(255, 255, 255, 0.16);
+  background: oklch(1 0 0 / 0.16);
 }
 
 .lightbox-close:active {
@@ -134,7 +140,7 @@ body[data-theme="dark"] .project-frame:hover {
 }
 
 .lightbox-close:focus-visible {
-  outline: 2px solid rgba(255, 255, 255, 0.32);
+  outline: 2px solid oklch(1 0 0 / 0.32);
   outline-offset: 2px;
 }
 
@@ -152,33 +158,13 @@ body[data-theme="dark"] .project-frame:hover {
   height: auto;
   max-height: calc(100vh - 96px);
   object-fit: contain;
-  border-radius: 8px;
-  border: 0.5px solid rgba(255, 255, 255, 0.12);
+  vertical-align: middle;
+  border-radius: var(--radius-lightbox-image);
   background: transparent;
 }
 
 .lightbox-image-placeholder {
   display: block;
-}
-
-@keyframes lightbox-fade {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes lightbox-panel-in {
-  from {
-    opacity: 0;
-    transform: scale(0.98) translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
 }
 
 @media (max-width: 680px) {

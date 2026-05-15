@@ -2,52 +2,55 @@
   color-scheme: light;
   --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-in-out-strong: cubic-bezier(0.77, 0, 0.175, 1);
-  --page-bg: #ffffff;
+  --radius-project-frame: 8px;
+  --radius-project-image: 7px;
+  --radius-lightbox-image: 8px;
+  --page-bg: oklch(1 0 0);
   --background: transparent;
-  --text-primary: #171717;
-  --text-secondary: #4c4c4c;
-  --switcher-bg: #f0f0f0;
-  --switcher-border: #ebebeb;
-  --icon-button-bg: #fafafa;
-  --button-primary-bg: #232325;
-  --button-primary-text: #fafafa;
-  --button-primary-hover-bg: #171717;
-  --button-secondary-bg: #f3f3f3;
-  --button-hover-bg: #f0f0f0;
-  --button-press-bg: #ebebeb;
-  --focus-ring: rgba(23, 23, 23, 0.18);
+  --text-primary: oklch(0.205 0 0);
+  --text-secondary: oklch(0.417 0 0);
+  --switcher-bg: oklch(0.955 0 0);
+  --switcher-border: oklch(0.94 0 0);
+  --icon-button-bg: oklch(0.985 0 0);
+  --button-primary-bg: oklch(0.257 0.004 286.136);
+  --button-primary-text: oklch(0.985 0 0);
+  --button-primary-hover-bg: oklch(0.205 0 0);
+  --button-secondary-bg: oklch(0.964 0 0);
+  --button-hover-bg: oklch(0.955 0 0);
+  --button-press-bg: oklch(0.94 0 0);
+  --focus-ring: oklch(0.205 0 0 / 0.18);
   --switcher-shadow:
-    0 1px 2px rgba(23, 23, 23, 0.05),
-    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+    0 1px 2px oklch(0.205 0 0 / 0.05),
+    inset 0 1px 0 oklch(1 0 0 / 0.85);
   --switcher-active-shadow:
-    0 1px 1px rgba(23, 23, 23, 0.03),
-    0 6px 16px rgba(23, 23, 23, 0.06),
-    inset 0 1px 0 rgba(255, 255, 255, 0.92);
+    0 1px 1px oklch(0.205 0 0 / 0.03),
+    0 6px 16px oklch(0.205 0 0 / 0.06),
+    inset 0 1px 0 oklch(1 0 0 / 0.92);
 }
 
 body[data-theme="dark"] {
   color-scheme: dark;
-  --page-bg: #000000;
+  --page-bg: oklch(0 0 0);
   --background: transparent;
-  --text-primary: #ededed;
-  --text-secondary: #a1a1a1;
-  --switcher-bg: #141414;
-  --switcher-border: #262626;
-  --icon-button-bg: #1f1f1f;
-  --button-primary-bg: #ededed;
-  --button-primary-text: #141414;
-  --button-primary-hover-bg: #ffffff;
-  --button-secondary-bg: #262626;
-  --button-hover-bg: #1f1f1f;
-  --button-press-bg: #262626;
-  --focus-ring: rgba(255, 255, 255, 0.24);
+  --text-primary: oklch(0.946 0 0);
+  --text-secondary: oklch(0.76 0 0);
+  --switcher-bg: oklch(0.191 0 0);
+  --switcher-border: oklch(0.269 0 0);
+  --icon-button-bg: oklch(0.239 0 0);
+  --button-primary-bg: oklch(0.946 0 0);
+  --button-primary-text: oklch(0.191 0 0);
+  --button-primary-hover-bg: oklch(1 0 0);
+  --button-secondary-bg: oklch(0.269 0 0);
+  --button-hover-bg: oklch(0.239 0 0);
+  --button-press-bg: oklch(0.269 0 0);
+  --focus-ring: oklch(1 0 0 / 0.24);
   --switcher-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.22),
-    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    0 1px 2px oklch(0 0 0 / 0.22),
+    inset 0 1px 0 oklch(1 0 0 / 0.04);
   --switcher-active-shadow:
-    0 1px 1px rgba(0, 0, 0, 0.18),
-    0 10px 20px rgba(0, 0, 0, 0.18),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    0 1px 1px oklch(0 0 0 / 0.18),
+    0 10px 20px oklch(0 0 0 / 0.18),
+    inset 0 1px 0 oklch(1 0 0 / 0.06);
 }
 
 * {
@@ -65,8 +68,17 @@ body {
   background: var(--page-bg);
   color: var(--text-primary);
   transition:
-    background 220ms var(--ease-out-strong),
-    color 220ms var(--ease-out-strong);
+    background .22s var(--ease-out-strong),
+    color .22s var(--ease-out-strong);
+}
+
+.antialiased {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+p {
+  text-wrap: pretty;
 }
 
 a {
