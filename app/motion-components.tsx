@@ -1,4 +1,7 @@
-import type { CSSProperties, ReactNode } from "react";
+"use client";
+
+import { motion, useReducedMotion } from "motion/react";
+import type { ReactNode } from "react";
 
 type PortfolioMotionProps = {
   children: ReactNode;
@@ -29,29 +32,23 @@ export function EnterAnimation({
   ariaLabel,
   dataProject,
 }: EnterAnimationProps) {
-  const style = { "--stagger": stagger } as CSSProperties;
-  const props = {
-    className: ["animate-enter", className].filter(Boolean).join(" "),
-    style,
-    "aria-label": ariaLabel,
-    "data-project": dataProject,
-  } as const;
-
-  if (as === "header") {
-    return <header {...props}>{children}</header>;
-  }
-
-  if (as === "nav") {
-    return <nav {...props}>{children}</nav>;
-  }
-
-  if (as === "section") {
-    return <section {...props}>{children}</section>;
-  }
+  const shouldReduceMotion = useReducedMotion();
+  const MotionElement = motion[as];
 
   return (
-    <div {...props}>
+    <MotionElement
+      className={["animate-enter", className].filter(Boolean).join(" ")}
+      aria-label={ariaLabel}
+      data-project={dataProject}
+      initial={shouldReduceMotion ? false : { y: 8, filter: "blur(6px)" }}
+      animate={shouldReduceMotion ? undefined : { y: 0, filter: "blur(0px)" }}
+      transition={{
+        duration: 0.56,
+        delay: stagger * 0.06,
+        ease: [0.23, 1, 0.32, 1],
+      }}
+    >
       {children}
-    </div>
+    </MotionElement>
   );
 }
