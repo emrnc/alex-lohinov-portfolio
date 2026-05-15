@@ -7,16 +7,6 @@
   position: relative;
 }
 
-.page-shell::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  background:
-    radial-gradient(circle at 15% 8%, var(--surface-glow) 0, transparent 20%),
-    radial-gradient(circle at 85% 14%, var(--surface-glow) 0, transparent 16%);
-}
-
 .portfolio-card {
   width: min(100%, 800px);
   display: flex;
