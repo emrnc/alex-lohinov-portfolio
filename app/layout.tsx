@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
+import Script from "next/script";
 import "./globals.css";
 
 const metadataBase = new URL("https://emrnc.vercel.app/");
@@ -46,6 +47,20 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <Script id="scroll-restoration" strategy="beforeInteractive">
+          {`
+            const navigationEntry = performance.getEntriesByType("navigation")[0];
+            const isReload = navigationEntry?.type === "reload";
+
+            if ("scrollRestoration" in history) {
+              history.scrollRestoration = isReload ? "manual" : "auto";
+            }
+
+            if (isReload) {
+              window.scrollTo(0, 0);
+            }
+          `}
+        </Script>
         {children}
         <Analytics />
       </body>

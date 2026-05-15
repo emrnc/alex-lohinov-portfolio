@@ -77,6 +77,31 @@ body[data-theme="dark"] .action-link-secondary:hover {
 .copy-email-button {
   width: 124px;
   flex: 0 0 auto;
+  overflow: visible;
+}
+
+.copy-email-button__confetti {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
+}
+
+.copy-email-button__confetti-piece {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  left: -10px;
+  top: -10px;
+  display: grid;
+  place-items: center;
+  font-size: 16px;
+  line-height: 1;
+  opacity: 0;
+  transform: translate3d(0, 0, 0) rotate(0deg) scale(0.6);
+  animation: copy-confetti-pop 1100ms var(--ease-out-strong) var(--confetti-delay) forwards;
+  filter: drop-shadow(0 2px 3px rgba(23, 23, 23, 0.1));
 }
 
 .copy-email-button__inner {
@@ -120,6 +145,29 @@ body[data-theme="dark"] .action-link-secondary:hover {
 .copy-email-button.is-copied .copy-email-button__state-success {
   opacity: 1;
   transform: translateY(0);
+}
+
+@keyframes copy-confetti-pop {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(0.6);
+  }
+  14% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--confetti-x), var(--confetti-y), 0) rotate(var(--confetti-rotation)) scale(1.1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .copy-email-button__confetti-piece {
+    animation: none;
+  }
 }
 
 @media (max-width: 680px) {

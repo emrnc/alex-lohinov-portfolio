@@ -1,8 +1,9 @@
 .page-shell {
   min-height: 100vh;
-  display: grid;
-  place-items: start center;
-  padding: 100px 24px 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 100px 24px 0;
   position: relative;
 }
 
@@ -24,7 +25,7 @@
   padding: 0;
   background: var(--background);
   position: relative;
-  animation: fade-up 420ms var(--ease-out-strong);
+  animation: blur-reveal 1000ms var(--ease-out-strong) both;
 }
 
 .top-row,
@@ -125,20 +126,28 @@
   gap: 10px;
 }
 
-@keyframes fade-up {
+@keyframes blur-reveal {
   from {
     opacity: 0;
-    transform: translateY(8px);
+    filter: blur(14px);
+    transform: translateY(10px) scale(0.992);
   }
   to {
     opacity: 1;
+    filter: blur(0);
     transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-card {
+    animation: none;
   }
 }
 
 @media (max-width: 680px) {
   .page-shell {
-    padding: 32px 16px 56px;
+    padding: 32px 16px 0;
   }
 
   .top-row {
@@ -150,6 +159,7 @@
     gap: 20px;
     width: min(100%, 335px);
   }
+
   .identity {
     gap: 0;
   }
