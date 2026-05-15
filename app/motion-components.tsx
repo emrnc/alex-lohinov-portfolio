@@ -1,6 +1,7 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
+import { motion, useAnimationControls, useReducedMotion } from "motion/react";
+import { useEffect } from "react";
 import type { ReactNode } from "react";
 
 type PortfolioMotionProps = {
@@ -33,20 +34,34 @@ export function EnterAnimation({
   dataProject,
 }: EnterAnimationProps) {
   const shouldReduceMotion = useReducedMotion();
+  const controls = useAnimationControls();
   const MotionElement = motion[as];
+
+  useEffect(() => {
+    if (shouldReduceMotion) {
+      controls.set({ y: 0, filter: "blur(0px)" });
+      return;
+    }
+
+    controls.set({ y: 8, filter: "blur(6px)" });
+    void controls.start({
+      y: 0,
+      filter: "blur(0px)",
+      transition: {
+        duration: 0.56,
+        delay: stagger * 0.06,
+        ease: [0.23, 1, 0.32, 1],
+      },
+    });
+  }, [controls, shouldReduceMotion, stagger]);
 
   return (
     <MotionElement
       className={["animate-enter", className].filter(Boolean).join(" ")}
       aria-label={ariaLabel}
       data-project={dataProject}
-      initial={shouldReduceMotion ? false : { y: 8, filter: "blur(6px)" }}
-      animate={shouldReduceMotion ? undefined : { y: 0, filter: "blur(0px)" }}
-      transition={{
-        duration: 0.56,
-        delay: stagger * 0.06,
-        ease: [0.23, 1, 0.32, 1],
-      }}
+      initial={false}
+      animate={controls}
     >
       {children}
     </MotionElement>
