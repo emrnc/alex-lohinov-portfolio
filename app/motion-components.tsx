@@ -1,6 +1,3 @@
-"use client";
-
-import { motion, useReducedMotion } from "motion/react";
 import type { CSSProperties, ReactNode } from "react";
 
 type PortfolioMotionProps = {
@@ -32,33 +29,29 @@ export function EnterAnimation({
   ariaLabel,
   dataProject,
 }: EnterAnimationProps) {
-  const prefersReducedMotion = useReducedMotion();
   const style = { "--stagger": stagger } as CSSProperties;
-  const motionProps = {
+  const props = {
     className: ["animate-enter", className].filter(Boolean).join(" "),
     style,
-    initial: prefersReducedMotion ? false : { opacity: 0, y: 10 },
-    animate: prefersReducedMotion ? undefined : { opacity: 1, y: 0 },
-    transition: { duration: 0.72, delay: stagger * 0.07, ease: [0.23, 1, 0.32, 1] },
     "aria-label": ariaLabel,
     "data-project": dataProject,
   } as const;
 
   if (as === "header") {
-    return <motion.header {...motionProps}>{children}</motion.header>;
+    return <header {...props}>{children}</header>;
   }
 
   if (as === "nav") {
-    return <motion.nav {...motionProps}>{children}</motion.nav>;
+    return <nav {...props}>{children}</nav>;
   }
 
   if (as === "section") {
-    return <motion.section {...motionProps}>{children}</motion.section>;
+    return <section {...props}>{children}</section>;
   }
 
   return (
-    <motion.div {...motionProps}>
+    <div {...props}>
       {children}
-    </motion.div>
+    </div>
   );
 }

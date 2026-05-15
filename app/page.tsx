@@ -69,7 +69,6 @@ export default function Home() {
                     darkImage={shot.darkImage}
                     width={shot.width}
                     height={shot.height}
-                    priority={projectIndex === 0 && shotIndex === 0}
                   />
                 ))}
               </div>
