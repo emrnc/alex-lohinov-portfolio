@@ -17,9 +17,8 @@ export type PortfolioProject = {
 };
 
 export const bio = [
-  "I am a Product Designer focused on shaping clear, scalable digital products from concept to interface.",
-  "Beyond designing in Figma, I build interactive product flows that help teams validate ideas and decisions earlier.",
-  "I care about thoughtful systems, clear interaction logic, and polished execution that makes complex products feel simple.",
+  "I'm a product designer who works closer to the code than most. Figma is where I start — but I usually end up building the flows in the browser too, which means teams can test real interactions before anyone writes a line of production code.",
+  "I gravitate toward complex products: CRMs, dashboards, multi-step workflows. The kind of interfaces where getting the logic right matters as much as getting the pixels right.",
 ];
 
 export const actions: SocialAction[] = [
